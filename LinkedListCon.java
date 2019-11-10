@@ -12,6 +12,34 @@ class LinkedListCon {
 		print(reverse(head));
 		
 	}
+    public static ListNode mergeKLinkedList(ListNode [] lists){
+        if (lists == null || lists.length == 0){
+            return null;
+        }
+
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, new Comparator<ListNode>(){
+            @Override
+            public int compare(ListNode l1, ListNode l2){
+                return l1.val - l2.val;
+            }
+        });
+
+        ListNode dummy = new ListNode(0);
+        ListNode head = dummy;
+        for (ListNode list : lists){
+            if (list != null)
+                pq.offer(list);
+        }
+        while(!pq.isEmpty()){
+            head.next  = pq.poll();
+            head = head.next;
+            if (head.next != null){
+                pq.offer(head.next);
+            }
+        }
+        return dummy.next;
+
+    }
 	public static sortList(ListNode head){
 		
 	}

@@ -127,7 +127,22 @@ class TwoPointersCon {
 		}
 		return res;
 	}
-		
+    public int triangle(int [] nums){
+        Arrays.sort(nums);
+        int n = nums.length, cnt = 0;
+        for (int i = n - 1;i >= 2;i--){
+            int l = 0, r = i - 1;
+            while(l < r){
+                if (nums[l] + nums[r] > nums[i]){
+                    cnt += r - l;
+                    r--;
+                }else{
+                    l++;
+                }
+            }
+        }
+        return cnt;
+    }		
 	public int strStr(String haystack, String needle) {
 		for(int i = 0;;i++){
 			for (int j = 0;; j++){
